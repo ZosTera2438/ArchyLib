@@ -5,6 +5,7 @@ import { useEffect } from "react";
 import axios from "axios";
 import MyAdminTop from "./MyAdminTop";
 import { Link } from "react-router-dom";
+import { domain } from "@/lib/constants";
 
 function Admin() {
   const navigate = useNavigate();
@@ -13,7 +14,7 @@ function Admin() {
     const VerifyToken = async () => {
       const token = localStorage.getItem("token");
       try {
-        await axios.get("http://localhost:8080/auth/protected", {
+        await axios.get(`${domain}/auth/protected`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },

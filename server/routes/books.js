@@ -4,6 +4,7 @@ import {
   getBooks,
   getTransactions,
   addToCart,
+  deleteBook,
   removeFromCart,
   getCart,
   getCartLength
@@ -16,6 +17,7 @@ const router = express.Router();
 router.post("/add", addBook);
 router.get("/", getBooks);
 router.get("/transactions", getTransactions);
+router.get("/:bookId", deleteBook);
 // router.delete("/:id", deleteBook);
 
 // Cart routes with authentication 

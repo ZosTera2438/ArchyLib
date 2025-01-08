@@ -43,9 +43,15 @@ export const getTransactions = async (req, res) => {
 
 //deleteBook
 export const deleteBook = async (req, res) => {
-  const { id } = req.params;
+  console.log(req, "nh")
+  const { bookId } = req.params;
   try {
-    await Book.findByIdAndDelete(id);
+    const deletedBook = await Book.findByIdAndDelete(bookId);
+
+    // Check if the book exists
+    if (!deletedBook) {
+      return res.status(404).json({ message: "Book not found" });
+    }
     res.json({ message: "Book deleted" });
   } catch (err) {
     res.status(500).json({ error: err.message });
@@ -81,14 +87,11 @@ export const addToCart = async (req, res) => {
     book.quantity -= 1;
     await book.save();
 
-
     const newTransaction = new Transaction({
       user: userId,
       book: bookId,
       type: "borrow",
-      date: Date.now,
     });
-
     await newTransaction.save();
     res.json({ message: "Book added to cart" });
   } catch (error) {
@@ -141,7 +144,6 @@ export const removeFromCart = async (req, res) => {
       user: userId,
       book: bookId,
       type: "return",
-      date: Date.now,
     });
 
     await newTransaction.save();

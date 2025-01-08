@@ -28,3 +28,5 @@ export const menuItems=[
         path:"/chart"
     },
 ]
+export const domain="https://archylib.onrender.com"
+// export const domain="http://localhost:8080"

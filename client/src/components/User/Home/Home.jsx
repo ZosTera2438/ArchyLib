@@ -8,6 +8,7 @@ import AdminTop from "./Header";
 import { toast, ToastContainer, Bounce } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { Plus, PlusIcon } from "lucide-react";
+import { domain } from "@/lib/constants";
 
 ModuleRegistry.registerModules([AllCommunityModule]);
 
@@ -42,7 +43,7 @@ function Home() {
     const token = localStorage.getItem("token");
     try {
       const response = await axios.post(
-        `http://localhost:8080/book/cart/add`,
+        `${domain}/book/cart/add`,
         { bookId: id },
         {
           headers: {
@@ -70,7 +71,7 @@ function Home() {
     const VerifyToken = async () => {
       const token = localStorage.getItem("token");
       try {
-        await axios.get("http://localhost:8080/auth/protected", {
+        await axios.get(`${domain}/auth/protected`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },
@@ -84,7 +85,7 @@ function Home() {
 
     const fetchBooks = async () => {
       try {
-        const response = await axios.get("http://localhost:8080/book/");
+        const response = await axios.get(`${domain}/book/`);
         console.log(response.data);
         setRowData(response.data); // Set the fetched data to rowData
       } catch (error) {

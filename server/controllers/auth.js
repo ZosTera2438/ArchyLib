@@ -22,26 +22,26 @@ export const Register = async (req, res) => {
 //login
 export const Login = async (req, res) => {
   const { username, password } = req.body;
-
   try {
     const user = await User.findOne({ username });
 
     if (!user) {
       return res.status(404).json({ message: "Not Found" });
     }
-
+    
     console.log(password, user.password)
 
     if (password!=user.password) {
       return res.status(400).json({ message: "Invalid Password" });
     }
-
+    
     const token = jwt.sign(
       { id: user._id, role: user.role },
       process.env.JWT_SECRET,
-      { expiresIn: "1h" }
-    );
+      { expiresIn: "6h" }
+    ); 
 
+    console.log("success")
     res.status(200).json({
       message: "success",
       token,

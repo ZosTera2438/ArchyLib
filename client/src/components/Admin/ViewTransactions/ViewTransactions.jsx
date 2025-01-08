@@ -3,6 +3,7 @@ import { AllCommunityModule, ModuleRegistry } from "ag-grid-community";
 import { AgGridReact } from "ag-grid-react";
 import MyAdminTop from "../Home/MyAdminTop";
 import axios from "axios";
+import { domain } from "@/lib/constants";
 
 ModuleRegistry.registerModules([AllCommunityModule]);
 
@@ -26,7 +27,7 @@ const ViewTransactions = () => {
   useEffect(() => {
     const fetchBooks = async () => {
       try {
-        const response = await axios.get("http://localhost:8080/book/transactions");
+        const response = await axios.get(`${domain}/book/transactions`);
         let formattedData = response.data.map((transaction) => ({
           ...transaction,
           date: new Date(transaction.date).toLocaleDateString("en-US", {

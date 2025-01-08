@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
+import { domain } from "@/lib/constants";
 
 function Header() {
   const navigate = useNavigate();
@@ -19,7 +20,7 @@ function Header() {
       const token = localStorage.getItem("token");
       try {
         const response = await axios.get(
-          "http://localhost:8080/book/cart/length",
+          `${domain}/book/cart/length`,
           {
             headers: {
               Authorization: `Bearer ${token}`,

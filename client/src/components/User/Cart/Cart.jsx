@@ -8,6 +8,7 @@ import { ToastContainer, toast, Bounce } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useNavigate } from "react-router-dom";
 import { MinusIcon } from "lucide-react";
+import { domain } from "@/lib/constants";
 
 ModuleRegistry.registerModules([AllCommunityModule]);
 
@@ -42,7 +43,7 @@ const Cart = () => {
     const VerifyToken = async () => {
       const token = localStorage.getItem("token");
       try {
-        await axios.get("http://localhost:8080/auth/protected", {
+        await axios.get(`${domain}/auth/protected`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },
@@ -57,7 +58,7 @@ const Cart = () => {
     const fetchCart = async () => {
       const token = localStorage.getItem("token");
       try {
-        const response = await axios.get("http://localhost:8080/book/cart", {
+        const response = await axios.get(`${domain}/book/cart`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },
@@ -83,7 +84,7 @@ const Cart = () => {
 
     try {
       // Send delete request to the server
-      await axios.delete(`http://localhost:8080/book/cart/${bookId}`, {
+      await axios.delete(`${domain}/book/cart/${bookId}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },

@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast, Bounce } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import MyAdminTop from "../Home/MyAdminTop";
+import { domain } from "@/lib/constants";
 
 function Add() {
   const [title, setTitle] = useState("");
@@ -26,7 +27,7 @@ function Add() {
 
     try {
       const response = await axios.post(
-        "http://localhost:8080/book/add",
+        `${domain}/book/add`,
         {
           title,
           author,

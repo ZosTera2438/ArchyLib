@@ -4,6 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { ToastContainer, toast, Bounce } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { domain } from "@/lib/constants";
 
 function Signup() {
   const Navigate = useNavigate();
@@ -15,7 +16,7 @@ function Signup() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post("http://localhost:8080/auth/register", {
+      const response = await axios.post(`${domain}/auth/register`, {
         fullName: name,
         username: email,
         password,
