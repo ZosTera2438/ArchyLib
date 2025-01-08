@@ -43,16 +43,32 @@ export const getTransactions = async (req, res) => {
 
 //deleteBook
 export const deleteBook = async (req, res) => {
-  console.log(req, "nh")
   const { bookId } = req.params;
+  // console.log(bookId, "nh")
   try {
-    const deletedBook = await Book.findByIdAndDelete(bookId);
+    await Book.findByIdAndDelete(bookId);
 
-    // Check if the book exists
-    if (!deletedBook) {
-      return res.status(404).json({ message: "Book not found" });
-    }
     res.json({ message: "Book deleted" });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+};
+
+// edit Book
+export const editBook = async (req, res) => {
+  const { title, author, publicationYear, quantity } = req.body;
+  const { bookId } = req.params;
+  console.log(bookId, "nh")
+  try {
+    const book = await Book.findById(bookId);
+    book.title = title;
+    book.author = author;
+    book.publicationYear = publicationYear;
+    book.quantity = quantity;
+
+    await book.save(); 
+
+    res.json({ message: "Book updated successfully" });
   } catch (err) {
     res.status(500).json({ error: err.message });
   }

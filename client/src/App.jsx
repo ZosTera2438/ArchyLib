@@ -8,6 +8,7 @@ import Cart from "./components/User/Cart/Cart";
 import ViewBook from "./components/Admin/ViewBook/ViewBook";
 import ViewTransactions from "./components/Admin/ViewTransactions/ViewTransactions";
 import Signup from "./components/Auth/Signup";
+import EditBook from "./components/Admin/ViewBook/EditBook";
 
 function App() {
   const isAutheniticated = () => {
@@ -38,6 +39,10 @@ function App() {
         <Route
           path="/admin/view-book"
           element={isAutheniticated() ? <ViewBook /> : <Navigate to="/" />}
+        />
+        <Route
+          path="/admin/edit_book/:bookId"
+          element={isAutheniticated() ? <EditBook /> : <Navigate to="/" />}
         />
         <Route
           path="/admin/view-transactions"

@@ -5,6 +5,7 @@ import {
   getTransactions,
   addToCart,
   deleteBook,
+  editBook,
   removeFromCart,
   getCart,
   getCartLength
@@ -18,7 +19,7 @@ router.post("/add", addBook);
 router.get("/", getBooks);
 router.get("/transactions", getTransactions);
 router.get("/:bookId", deleteBook);
-// router.delete("/:id", deleteBook);
+router.get("/edit/:bookId", editBook);
 
 // Cart routes with authentication 
 router.get("/cart", authenticate, getCart); // User views their cart

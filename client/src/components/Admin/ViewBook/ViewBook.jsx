@@ -20,35 +20,35 @@ const ViewBook = () => {
     { field: "author", headerName: "Author" },
     { field: "publicationYear", headerName: "Publication Year" },
     { field: "quantity", headerName: "Books Available" },
-    // {
-    //   headerName: "Edit Book",
-    //   field: "editBook",
-    //   cellRenderer: (params) => {
-    //     return (
-    //       <div className="py-2">
-    //         <Edit
-    //           color="grey"
-    //           className="cursor-pointer "
-    //           onClick={() => editBook(params.data._id)}
-    //         />
-    //       </div>
-    //     );
-    //   },
-    // },{
-    //   headerName: "Delete Book",
-    //   field: "deleteBook",
-    //   cellRenderer: (params) => {
-    //     return (
-    //       <div className="py-2">
-    //         <Trash2
-    //           color="red"
-    //           className="cursor-pointer "
-    //           onClick={() => deleteBook(params.data._id)}
-    //         />
-    //       </div>
-    //     );
-    //   },
-    // },
+    {
+      headerName: "Edit Book",
+      field: "editBook",
+      cellRenderer: (params) => {
+        return (
+          <div className="py-2">
+            <Edit
+              color="grey"
+              className="cursor-pointer "
+              onClick={() => Navigate(`/admin/edit_book/${params.data._id}`)}
+            />
+          </div>
+        );
+      },
+    },{
+      headerName: "Delete Book",
+      field: "deleteBook",
+      cellRenderer: (params) => {
+        return (
+          <div className="py-2">
+            <Trash2
+              color="red"
+              className="cursor-pointer "
+              onClick={() => deleteBook(params.data._id)}
+            />
+          </div>
+        );
+      },
+    },
   ]);
 
   const defaultColDef = {
@@ -56,24 +56,6 @@ const ViewBook = () => {
     sortable: true, 
   };
 
-  
-  // Function to remove a book from the cart
-  const editBook = async (bookId) => {
-    const token = localStorage.getItem("token");
-
-    try {
-      // Send delete request to the server
-      await axios.put(`${domain}/book/edit/${bookId}`, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
-
-    } catch (error) {
-      // Handle error in removing the book
-      console.error("Error removing book from cart:", error);
-    }
-  };
 
   
   // Function to remove a book from the cart

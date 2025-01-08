@@ -2,7 +2,7 @@
 
 This is a Library Management System built using the MERN stack (MongoDB, Express.js, React, Node.js). The system supports multiple user logins, authentication, borrow/returning books.
 
-Website is hosted at "[link](https://archy-lib.vercel.app)"
+Website is hosted at "[ArchyLib](https://archy-lib.vercel.app)"
 
 ## Features
 
